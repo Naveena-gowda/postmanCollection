@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-
   workflow_dispatch:
 
 jobs:
@@ -16,10 +15,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Newman using Docker
+      - name: Run Newman Tests
         run: |
           docker run --rm \
             -v "${{ github.workspace }}:/etc/newman" \
             -w /etc/newman \
             postman/newman:alpine \
-            run "New Collection.postman_collection.json"
+            run "New Collection.postman_collection.json" \
+            --reporters cli,json \
+            --reporter-json-export newman-report.json
+
+      - name: Upload Newman Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Newman-Test-Report
+          path: newman-report.json
