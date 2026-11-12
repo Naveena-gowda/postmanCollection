@@ -1,8 +1,11 @@
 stages:
--test
+  - test
+
 postman_test:
-stage:test
-name: image:docker pull postman/newman:alpine
-entrypoint:[""]
-script: 
--newman --version
+  stage: test
+  image:
+    name: postman/newman:alpine
+    entrypoint: [""]
+  script:
+    - newman --version
+    - newman run collection.json
