@@ -1,0 +1,8 @@
+stages:
+-test
+postman_test:
+stage:test
+name: image:docker pull postman/newman:alpine
+entrypoint:[""]
+script: 
+-newman --version
