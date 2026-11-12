@@ -7,5 +7,5 @@ postman_test:
     name: postman/newman:alpine
     entrypoint: [""]
   script:
-    - newman --version
-    - newman run collection.json
+  - newman --version
+  - newman run "New Collection.postman_collection.json"
