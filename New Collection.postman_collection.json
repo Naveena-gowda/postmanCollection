@@ -14,7 +14,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test(\"status code is 200\", function(){\r\n    pm.response.to.have.status(201);\r\n})\r\n\r\nconst response = pm.response.json();\r\nconsole.log(response);\r\n\r\npm.test(\"status should be OK\",()=>{\r\n    pm.expect(1).to.eql(1);\r\n    pm.expect(response.status).to.eql(\"OK\")\r\n})\r\n\r\npm.execution.setNextRequest(\"List of books\")"
+              "pm.test(\"status code is 200\", function(){\r\n    pm.response.to.have.status(200);\r\n})\r\n\r\nconst response = pm.response.json();\r\nconsole.log(response);\r\n\r\npm.test(\"status should be OK\",()=>{\r\n    pm.expect(1).to.eql(1);\r\n    pm.expect(response.status).to.eql(\"OK\")\r\n})\r\n\r\npm.execution.setNextRequest(\"List of books\")"
             ]
           }
         }
