@@ -1,0 +1,25 @@
+
+name: Newman API Testing
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  api-testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Newman using Docker
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/etc/newman" \
+            -w /etc/newman \
+            postman/newman:alpine \
+            run "New Collection.postman_collection.json"
